@@ -1,5 +1,5 @@
 const gridElement = document.getElementById("grid");
-const gridSize = 30;
+const gridSize = 20;
 const grid = [];
 let startNode = null;
 let endNode = null;
