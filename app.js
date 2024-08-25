@@ -2,7 +2,7 @@ function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Priority Queue implementation
+// Priority Queue implementations
 class PriorityQueue {
     constructor() {
         this.queue = [];
