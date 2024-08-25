@@ -2,7 +2,7 @@ function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Priority Queue implementations
+// Priority Queue implementation
 class PriorityQueue {
     constructor() {
         this.queue = [];
@@ -15,6 +15,25 @@ class PriorityQueue {
 
     dequeue() {
         return this.queue.shift().element;
+    }
+
+    isEmpty() {
+        return this.queue.length === 0;
+    }
+}
+
+// Simple Queue implementation
+class Queue {
+    constructor() {
+        this.queue = [];
+    }
+
+    enqueue(element) {
+        this.queue.push(element);
+    }
+
+    dequeue() {
+        return this.queue.shift(); // Fixed to return the correct element
     }
 
     isEmpty() {
@@ -123,6 +142,42 @@ async function dijkstra() {
     }
 }
 
+// BFS algorithm implementation using a queue
+async function bfs() {
+
+    const visited={};
+    const q = new Queue();
+
+    for (let y = 0; y < gridSize; y++) {
+        for (let x = 0; x < gridSize; x++) {
+            visited[`${x},${y}`] = false;
+        }
+    }
+    q.enqueue(startNode);
+
+    while (!q.isEmpty()) {
+        const current = q.dequeue();
+
+        if (current.x === endNode.x && current.y === endNode.y) {
+            break;
+        }
+        if(visited[`${current.x},${current.y}`])
+        {
+            continue;
+        }
+        visited[`${current.x},${current.y}`]=true;
+        await delay(12);
+        grid[current.y][current.x].classList.add("path");
+        const neighbors = getNeighbors(current);
+        neighbors.forEach(neighbor => {
+            if(!visited[`${neighbor.x},${neighbor.y}`])
+            {
+                q.enqueue(neighbor);
+            }
+        });
+    }
+}
+
 // Reconstruct the path from the end node to the start node
 async function reconstructPath(previous) {
     let current = endNode;
@@ -135,11 +190,19 @@ async function reconstructPath(previous) {
 }
 
 // Event listeners for Start and Reset buttons
-document.getElementById("startBtn").addEventListener("click", () => {
+document.getElementById("startBtnDijkis").addEventListener("click", () => {
     if (startNode && endNode) {
         dijkstra();
     }
 });
+
+
+document.getElementById("startBtnBfs").addEventListener("click", () => {
+    if (startNode && endNode) {
+        bfs();
+    }
+});
+
 
 document.getElementById("resetBtn").addEventListener("click", () => {
     startNode = null;
