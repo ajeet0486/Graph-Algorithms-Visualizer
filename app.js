@@ -42,7 +42,7 @@ class Queue {
 }
 
 const gridElement = document.getElementById("grid");
-const gridSize = 16;
+const gridSize = 17;
 const grid = [];
 let startNode = null;
 let endNode = null;
