@@ -1,9 +1,30 @@
+// Priority Queue implementation
+class PriorityQueue {
+    constructor() {
+        this.queue = [];
+    }
+
+    enqueue(element, priority) {
+        this.queue.push({ element, priority });
+        this.queue.sort((a, b) => a.priority - b.priority);
+    }
+
+    dequeue() {
+        return this.queue.shift().element;
+    }
+
+    isEmpty() {
+        return this.queue.length === 0;
+    }
+}
+
 const gridElement = document.getElementById("grid");
 const gridSize = 20;
 const grid = [];
 let startNode = null;
 let endNode = null;
 
+// Create the grid and initialize event listeners for each cell
 function createGrid() {
     for (let y = 0; y < gridSize; y++) {
         const row = [];
@@ -20,6 +41,7 @@ function createGrid() {
     }
 }
 
+// Handle clicks on the grid cells
 function handleCellClick(cell) {
     const x = parseInt(cell.dataset.x);
     const y = parseInt(cell.dataset.y);
@@ -35,6 +57,7 @@ function handleCellClick(cell) {
     }
 }
 
+// Get valid neighboring cells for a given node
 function getNeighbors(node) {
     const neighbors = [];
     const directions = [
@@ -54,36 +77,31 @@ function getNeighbors(node) {
     return neighbors;
 }
 
+// Dijkstra's algorithm implementation using a priority queue
 function dijkstra() {
-    const unvisited = new Set();
     const distances = {};
+    const pq = new PriorityQueue();
     const previous = {};
 
+    // Initialize distances and previous nodes
     for (let y = 0; y < gridSize; y++) {
         for (let x = 0; x < gridSize; x++) {
-            const node = { x, y };
             distances[`${x},${y}`] = Infinity;
             previous[`${x},${y}`] = null;
-            unvisited.add(node);
         }
     }
 
     distances[`${startNode.x},${startNode.y}`] = 0;
+    pq.enqueue(startNode, 0);
 
-    while (unvisited.size > 0) {
-        const current = Array.from(unvisited).reduce((minNode, node) => {
-            if (distances[`${node.x},${node.y}`] < distances[`${minNode.x},${minNode.y}`]) {
-                return node;
-            }
-            return minNode;
-        });
+    while (!pq.isEmpty()) {
+        const current = pq.dequeue();
 
+        // If we reached the end node, reconstruct the path
         if (current.x === endNode.x && current.y === endNode.y) {
             reconstructPath(previous);
             return;
         }
-
-        unvisited.delete(current);
 
         const neighbors = getNeighbors(current);
         neighbors.forEach(neighbor => {
@@ -91,14 +109,17 @@ function dijkstra() {
             if (neighborCell.classList.contains("wall")) return;
 
             const alt = distances[`${current.x},${current.y}`] + 1;
+
             if (alt < distances[`${neighbor.x},${neighbor.y}`]) {
                 distances[`${neighbor.x},${neighbor.y}`] = alt;
                 previous[`${neighbor.x},${neighbor.y}`] = current;
+                pq.enqueue(neighbor, alt);
             }
         });
     }
 }
 
+// Reconstruct the path from the end node to the start node
 function reconstructPath(previous) {
     let current = endNode;
     while (current) {
@@ -108,6 +129,7 @@ function reconstructPath(previous) {
     }
 }
 
+// Event listeners for Start and Reset buttons
 document.getElementById("startBtn").addEventListener("click", () => {
     if (startNode && endNode) {
         dijkstra();
