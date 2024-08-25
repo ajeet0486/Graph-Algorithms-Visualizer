@@ -127,6 +127,13 @@ document.getElementById("startBtnBfs").addEventListener("click", () => {
     }
 });
 
+document.getElementById("startBtnDfs").addEventListener("click", () => {
+    if (startNode && endNode) {
+        dfs();
+        document.getElementById("heading").innerHTML="Breadth First Search";
+    }
+});
+
 
 document.getElementById("resetBtn").addEventListener("click", () => {
     startNode = null;
