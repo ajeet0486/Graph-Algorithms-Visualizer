@@ -42,7 +42,7 @@ class Queue {
 }
 
 const gridElement = document.getElementById("grid");
-const gridSize = 20;
+const gridSize = 16;
 const grid = [];
 let startNode = null;
 let endNode = null;
@@ -115,6 +115,7 @@ async function reconstructPath(previous) {
 document.getElementById("startBtnDijkis").addEventListener("click", () => {
     if (startNode && endNode) {
         dijkstra();
+        document.getElementById("heading").innerHTML="Dijkstra Algorithm";
     }
 });
 
@@ -122,6 +123,7 @@ document.getElementById("startBtnDijkis").addEventListener("click", () => {
 document.getElementById("startBtnBfs").addEventListener("click", () => {
     if (startNode && endNode) {
         bfs();
+        document.getElementById("heading").innerHTML="Breadth First Search";
     }
 });
 

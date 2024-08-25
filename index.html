@@ -11,24 +11,32 @@
 <body>
     <nav style="display: flex;">
         <div>
-            <button id="startBtnDijkis">Dijkstra Algorithm</button>
+            <button id="startBtnDijkis" style="width: 18vmin; height: 5vmin; font-size: 2vmin;">Dijkstra
+                Algorithm</button>
         </div>
         <div>
-            <button id="startBtnBfs">Breadth First Search</button>
+            <button id="startBtnBfs" style="width: 18vmin; height: 5vmin; font-size: 2vmin;">Breadth First
+                Search</button>
         </div>
         <div>
-            <button>Depth First Search</button>
+            <button style="width: 18vmin; height: 5vmin; font-size: 2vmin;">Depth First Search</button>
         </div>
         <div>
-            <button>Bellman–Ford Algorithm</button>
+            <button style="width: 18vmin; height: 5vmin; font-size: 2vmin;">Bellman–Ford Algorithm</button>
+        </div>
+        <div id="controls">
+            <button id="resetBtn" style="width: 18vmin; height: 5vmin; font-size: 2vmin;">Reset</button>
         </div>
     </nav>
-    <h1>Dijkstra's Algorithm Visualization</h1>
-    <div id="controls">
-        <button id="resetBtn">Reset</button>
-    </div>
-    <div style="display: flex; justify-content:center;">
-        <div id="grid"></div>
+    
+
+    <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: center;">
+            <h1 id="heading">..... Algorithm</h1>
+        </div>
+        <div style="display: flex; justify-content:center;">
+            <div id="grid"></div>
+        </div>
     </div>
     <script src="./dijkstra.js"></script>
     <script src="./bfs.js"></script>
