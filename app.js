@@ -1,3 +1,7 @@
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // Priority Queue implementation
 class PriorityQueue {
     constructor() {
@@ -78,7 +82,7 @@ function getNeighbors(node) {
 }
 
 // Dijkstra's algorithm implementation using a priority queue
-function dijkstra() {
+async function dijkstra() {
     const distances = {};
     const pq = new PriorityQueue();
     const previous = {};
@@ -99,7 +103,7 @@ function dijkstra() {
 
         // If we reached the end node, reconstruct the path
         if (current.x === endNode.x && current.y === endNode.y) {
-            reconstructPath(previous);
+            await reconstructPath(previous);
             return;
         }
 
@@ -120,10 +124,11 @@ function dijkstra() {
 }
 
 // Reconstruct the path from the end node to the start node
-function reconstructPath(previous) {
+async function reconstructPath(previous) {
     let current = endNode;
     while (current) {
         const { x, y } = current;
+        await delay(100);  // Add a 100ms delay between steps
         grid[y][x].classList.add("path");
         current = previous[`${x},${y}`];
     }
@@ -139,7 +144,8 @@ document.getElementById("startBtn").addEventListener("click", () => {
 document.getElementById("resetBtn").addEventListener("click", () => {
     startNode = null;
     endNode = null;
-    gridElement.innerHTML = "";
+    gridElement.innerHTML = ""; 
+    grid.length = 0; 
     createGrid();
 });
 
