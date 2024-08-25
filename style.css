@@ -1,7 +1,7 @@
 #grid {
     display: grid;
-    width: 80vmin;
-    height: 80vmin;
+    width: 83vmin;
+    height: 83vmin;
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(20, 1fr);
 }
