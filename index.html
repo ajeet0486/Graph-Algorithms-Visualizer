@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dijkstra's Algorithm Visualization</title>
+    <title>Graph Algorithm Visualization</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -21,22 +21,33 @@
         <div class="btn">
             <button id="startBtnDfs" style="width: 18vmin; height: 6vmin; font-size: 2vmin;">Depth First Search</button>
         </div>
-        <div class="btn">
-            <button style="width: 18vmin; height: 6vmin; font-size: 2vmin;">Bellman–Ford Algorithm</button>
-        </div>
         <div id="controls">
             <button id="resetBtn" style="width: 18vmin; height: 6vmin; font-size: 2vmin;">Reset</button>
         </div>
-    </nav>
-    
 
-    <div style="display: flex; flex-direction: column;">
-        <div style="display: flex; justify-content: center;">
-            <h1 id="heading">..... Algorithm</h1>
+        <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center;margin-left: 15px;">
+                <div style="width: 2vmin; height: 2vmin; border: 1px solid black; background-color: green;"></div>
+                <div style="margin-left: 8px; display: flex; align-items: center;">Source</div>
+            </div>
+            <div style="display: flex; align-items: center;margin-left: 15px;">
+                <div style="width: 2vmin; height: 2vmin; border: 1px solid black; background-color: red;"></div>
+                <div style="margin-left: 8px; display: flex; align-items: center;">Destination</div>
+            </div>
+            <div style="display: flex; align-items: center;margin-left: 15px;">
+                <div style="width: 2vmin; height: 2vmin; border: 1px solid black; background-color: black;"></div>
+                <div style="margin-left: 8px; display: flex; align-items: center;">Wall</div>
+            </div>
         </div>
-        <div style="display: flex; justify-content:center;">
-            <div id="grid"></div>
-        </div>
+    </nav>
+
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <h1 id="heading">..... Algorithm</h1>
+    </div>
+    <div style="display: flex; justify-content:center;">
+        <div id="grid"></div>
+    </div>
     </div>
     <script src="./dijkstra.js"></script>
     <script src="./bfs.js"></script>
