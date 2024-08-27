@@ -25,6 +25,8 @@ async function bfs() {
         grid[current.y][current.x].classList.add("path");
         const neighbors = getNeighbors(current);
         neighbors.forEach(neighbor => {
+            const neighborCell = grid[neighbor.y][neighbor.x];
+            if (neighborCell.classList.contains("wall")) return;
             if(!visited[`${neighbor.x},${neighbor.y}`])
             {
                 q.enqueue(neighbor);

@@ -7,7 +7,7 @@ async function dfs() {
             visited[`${x},${y}`] = false;
         }
     }
-    
+
     stack.push(startNode);
 
     while (stack.length > 0) {
@@ -23,8 +23,12 @@ async function dfs() {
             }
 
             const neighbors = getNeighbors(current);
-            for (let i = neighbors.length - 1; i >= 0; i--) { 
+            for (let i = neighbors.length - 1; i >= 0; i--) {
                 const neighbor = neighbors[i];
+
+                const neighborCell = grid[neighbor.y][neighbor.x];
+                if (neighborCell.classList.contains("wall")) continue;
+
                 if (!visited[`${neighbor.x},${neighbor.y}`]) {
                     stack.push(neighbor);
                 }
