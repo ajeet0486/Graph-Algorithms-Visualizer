@@ -8,7 +8,7 @@ async function bfs() {
             visited[`${x},${y}`] = false;
         }
     }
-    q.enqueue(startNode);
+    q.enqueue(startNode);//
 
     while (!q.isEmpty()) {
         const current = q.dequeue();
